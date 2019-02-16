@@ -12,7 +12,8 @@ class StepDelegateMap;
 //! Add opencv to the pipeline pipeline.
 namespace tp_pipeline_opencv
 {
-TDP_DECLARE_ID(                       opencvSID,                          "Opencv")
+TDP_DECLARE_ID(                       opencvSID,                           "Opencv")
+TDP_DECLARE_ID(             featureExtractorSID,                "Feature extractor")
 
 //##################################################################################################
 //! Add the step delegates that this module provides to the StepDelegateMap

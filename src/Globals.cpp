@@ -7,6 +7,7 @@
 namespace tp_pipeline_opencv
 {
 TDP_DEFINE_ID(                       opencvSID,                           "Opencv")
+TDP_DEFINE_ID(             featureExtractorSID,                "Feature extractor")
 
 //##################################################################################################
 void createStepDelegates(tp_pipeline::StepDelegateMap& stepDelegates)
