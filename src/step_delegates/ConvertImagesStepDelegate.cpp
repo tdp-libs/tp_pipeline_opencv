@@ -1,4 +1,4 @@
-#include "tp_pipeline_opencv/step_delegates/StubStepDelegate.h"
+#include "tp_pipeline_opencv/step_delegates/ConvertImagesStepDelegate.h"
 
 #include "tp_pipeline/StepDetails.h"
 #include "tp_pipeline/StepInput.h"
@@ -11,14 +11,14 @@ namespace tp_pipeline_opencv
 {
 
 //##################################################################################################
-StubStepDelegate::StubStepDelegate():
-  tp_pipeline::AbstractStepDelegate("", {opencvSID()})
+ConvertImagesStepDelegate::ConvertImagesStepDelegate():
+  tp_pipeline::AbstractStepDelegate(convertImagesSID(), {opencvSID()})
 {
 
 }
 
 //##################################################################################################
-void StubStepDelegate::executeStep(tp_pipeline::StepDetails* stepDetails,
+void ConvertImagesStepDelegate::executeStep(tp_pipeline::StepDetails* stepDetails,
                                                const tp_pipeline::StepInput& input,
                                                tp_data::Collection& output) const
 {
@@ -28,7 +28,7 @@ void StubStepDelegate::executeStep(tp_pipeline::StepDetails* stepDetails,
 }
 
 //##################################################################################################
-void StubStepDelegate::fixupParameters(tp_pipeline::StepDetails* stepDetails) const
+void ConvertImagesStepDelegate::fixupParameters(tp_pipeline::StepDetails* stepDetails) const
 {
   stepDetails->setOutputNames({"Output image"});
 

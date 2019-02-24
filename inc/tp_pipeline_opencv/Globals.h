@@ -21,10 +21,11 @@ TDP_DECLARE_ID(                       opencvSID,                           "Open
 TDP_DECLARE_ID(             featureExtractorSID,                "Feature extractor")
 TDP_DECLARE_ID(                 detectorTypeSID,                    "Detector type")
 TDP_DECLARE_ID(                        cvMatSID,                           "CV mat")
+TDP_DECLARE_ID(                convertImagesSID,                   "Convert images")
 
 //##################################################################################################
 //! Add the step delegates that this module provides to the StepDelegateMap
-void createStepDelegates(tp_pipeline::StepDelegateMap& stepDelegates, const tp_data::CollectionFactory& collectionFactory);
+void createStepDelegates(tp_pipeline::StepDelegateMap& stepDelegates, const tp_data::CollectionFactory* collectionFactory);
 }
 
 #endif

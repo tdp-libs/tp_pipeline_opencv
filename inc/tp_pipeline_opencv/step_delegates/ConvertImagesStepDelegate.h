@@ -1,5 +1,5 @@
-#ifndef tp_pipeline_opencv_StubStepDelegate_h
-#define tp_pipeline_opencv_StubStepDelegate_h
+#ifndef tp_pipeline_opencv_ConvertImagesStepDelegate_h
+#define tp_pipeline_opencv_ConvertImagesStepDelegate_h
 
 #include "tp_pipeline_opencv/Globals.h"
 #include "tp_pipeline/AbstractStepDelegate.h"
@@ -8,11 +8,11 @@ namespace tp_pipeline_opencv
 {
 
 //##################################################################################################
-class StubStepDelegate: public tp_pipeline::AbstractStepDelegate
+class ConvertImagesStepDelegate: public tp_pipeline::AbstractStepDelegate
 {
 public:
   //################################################################################################
-  StubStepDelegate();
+  ConvertImagesStepDelegate();
 
   //################################################################################################
   void executeStep(tp_pipeline::StepDetails* stepDetails,
