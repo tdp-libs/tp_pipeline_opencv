@@ -9,6 +9,8 @@
 
 #include "tp_data/Collection.h"
 
+#include "tp_utils/DebugUtils.h"
+
 #include <opencv2/features2d.hpp>
 
 namespace tp_pipeline_opencv
@@ -127,6 +129,8 @@ void FeatureExtractorStepDelegate::executeStep(tp_pipeline::StepDetails* stepDet
                                 cv::noArray(),
                                 out->kp,
                                 out->desc);
+
+    tpDebug() << out->kp.size();
 
     break;
   }

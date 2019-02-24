@@ -6,6 +6,8 @@ DEFINES += TP_PIPELINE_OPENCV_LIBRARY
 SOURCES += src/Globals.cpp
 HEADERS += inc/tp_pipeline_opencv/Globals.h
 
+SOURCES += src/ImageConversion.cpp
+HEADERS += inc/tp_pipeline_opencv/ImageConversion.h
 
 #-- Delegates --------------------------------------------------------------------------------------
 SOURCES += src/step_delegates/ConvertImagesStepDelegate.cpp
