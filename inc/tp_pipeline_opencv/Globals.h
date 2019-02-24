@@ -3,6 +3,11 @@
 
 #include "tp_utils/StringID.h"
 
+namespace tp_data
+{
+class CollectionFactory;
+}
+
 namespace tp_pipeline
 {
 class StepDelegateMap;
@@ -14,10 +19,12 @@ namespace tp_pipeline_opencv
 {
 TDP_DECLARE_ID(                       opencvSID,                           "Opencv")
 TDP_DECLARE_ID(             featureExtractorSID,                "Feature extractor")
+TDP_DECLARE_ID(                 detectorTypeSID,                    "Detector type")
+TDP_DECLARE_ID(                        cvMatSID,                           "CV mat")
 
 //##################################################################################################
 //! Add the step delegates that this module provides to the StepDelegateMap
-void createStepDelegates(tp_pipeline::StepDelegateMap& stepDelegates);
+void createStepDelegates(tp_pipeline::StepDelegateMap& stepDelegates, const tp_data::CollectionFactory& collectionFactory);
 }
 
 #endif

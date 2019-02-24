@@ -19,5 +19,11 @@ HEADERS += inc/tp_pipeline_opencv/step_delegates/FeatureMatcherStepDelegate.h
 
 
 #-- Members ----------------------------------------------------------------------------------------
-SOURCES += src/members/StubMember.cpp
-HEADERS += inc/tp_pipeline_opencv/members/StubMember.h
+SOURCES += src/members/CVMatMember.cpp
+HEADERS += inc/tp_pipeline_opencv/members/CVMatMember.h
+
+SOURCES += src/members/CVFeaturesMember.cpp
+HEADERS += inc/tp_pipeline_opencv/members/CVFeaturesMember.h
+
+SOURCES += src/members/CVMatchesMember.cpp
+HEADERS += inc/tp_pipeline_opencv/members/CVMatchesMember.h
