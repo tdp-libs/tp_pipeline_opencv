@@ -1,6 +1,7 @@
 #include "tp_pipeline_opencv/step_delegates/FeatureExtractorStepDelegate.h"
-#include "tp_pipeline_opencv/members/CVMatMember.h"
-#include "tp_pipeline_opencv/members/CVFeaturesMember.h"
+
+#include "tp_data_opencv/members/CVMatMember.h"
+#include "tp_data_opencv/members/CVFeaturesMember.h"
 
 #include "tp_pipeline_image_utils/Globals.h"
 
@@ -77,7 +78,7 @@ void FeatureExtractorStepDelegate::executeStep(tp_pipeline::StepDetails* stepDet
                                                const tp_pipeline::StepInput& input,
                                                tp_data::Collection& output) const
 {
-  CVMatMember* image{nullptr};
+  tp_data_opencv::CVMatMember* image{nullptr};
   input.memberCast(stepDetails->parameterValue<std::string>(tp_pipeline_image_utils::colorImageSID()), image);
   if(!image)
   {
@@ -116,7 +117,7 @@ void FeatureExtractorStepDelegate::executeStep(tp_pipeline::StepDetails* stepDet
   }
   }
 
-  auto out = new CVFeaturesMember("features");
+  auto out = new tp_data_opencv::CVFeaturesMember("features");
   output.addMember(out);
 
   //== Extract the features ========================================================================

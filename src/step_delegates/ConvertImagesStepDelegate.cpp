@@ -1,6 +1,7 @@
 #include "tp_pipeline_opencv/step_delegates/ConvertImagesStepDelegate.h"
-#include "tp_pipeline_opencv/members/CVMatMember.h"
-#include "tp_pipeline_opencv/ImageConversion.h"
+
+#include "tp_data_opencv/members/CVMatMember.h"
+#include "tp_data_opencv/ImageConversion.h"
 
 #include "tp_data_image_utils/members/ColorMapMember.h"
 
@@ -63,17 +64,17 @@ void ConvertImagesStepDelegate::executeStep(tp_pipeline::StepDetails* stepDetail
       return;
     }
 
-    auto out = new CVMatMember(stepDetails->lookupOutputName("Output image"));
+    auto out = new tp_data_opencv::CVMatMember(stepDetails->lookupOutputName("Output image"));
     output.addMember(out);
 
-    convertImage(in->data, out->data);
+    tp_data_opencv::convertImage(in->data, out->data);
 
     break;
   }
 
   case Mode_lt::MatToColorMap:
   {
-    CVMatMember* in{nullptr};
+    tp_data_opencv::CVMatMember* in{nullptr};
     input.memberCast(stepDetails->parameterValue<std::string>(tp_pipeline_image_utils::colorImageSID()), in);
     if(!in)
     {
@@ -84,7 +85,7 @@ void ConvertImagesStepDelegate::executeStep(tp_pipeline::StepDetails* stepDetail
     auto out = new tp_data_image_utils::ColorMapMember(stepDetails->lookupOutputName("Output image"));
     output.addMember(out);
 
-    convertImage(in->data, out->data);
+    tp_data_opencv::convertImage(in->data, out->data);
 
     break;
   }

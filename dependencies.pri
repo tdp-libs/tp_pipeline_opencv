@@ -1,6 +1,6 @@
 DEPENDENCIES += tp_pipeline_image_utils
 DEPENDENCIES += tp_pipeline_math_utils
-DEPENDENCIES += tp_data_features
+DEPENDENCIES += tp_data_opencv
 INCLUDEPATHS += tp_pipeline_opencv/inc/
 LIBRARIES    += tp_pipeline_opencv
 
