@@ -2,6 +2,7 @@
 #define tp_pipeline_opencv_ConvertImagesStepDelegate_h
 
 #include "tp_pipeline_opencv/Globals.h"
+
 #include "tp_pipeline/AbstractStepDelegate.h"
 
 namespace tp_pipeline_opencv
