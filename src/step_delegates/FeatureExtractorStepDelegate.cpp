@@ -130,9 +130,6 @@ void FeatureExtractorStepDelegate::executeStep(tp_pipeline::StepDetails* stepDet
                                 cv::noArray(),
                                 out->kp,
                                 out->desc);
-
-    tpDebug() << out->kp.size();
-
     break;
   }
 
