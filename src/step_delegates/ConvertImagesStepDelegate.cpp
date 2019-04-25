@@ -64,7 +64,7 @@ void ConvertImagesStepDelegate::executeStep(tp_pipeline::StepDetails* stepDetail
       return;
     }
 
-    auto out = new tp_data_opencv::CVMatMember(stepDetails->lookupOutputName("Output image"));
+    auto out = new tp_data_opencv::CVMatMember(stepDetails->lookupOutputName("Output data"));
     output.addMember(out);
 
     tp_data_opencv::convertImage(in->data, out->data);
@@ -82,7 +82,7 @@ void ConvertImagesStepDelegate::executeStep(tp_pipeline::StepDetails* stepDetail
       return;
     }
 
-    auto out = new tp_data_image_utils::ColorMapMember(stepDetails->lookupOutputName("Output image"));
+    auto out = new tp_data_image_utils::ColorMapMember(stepDetails->lookupOutputName("Output data"));
     output.addMember(out);
 
     tp_data_opencv::convertImage(in->data, out->data);
@@ -95,7 +95,7 @@ void ConvertImagesStepDelegate::executeStep(tp_pipeline::StepDetails* stepDetail
 //##################################################################################################
 void ConvertImagesStepDelegate::fixupParameters(tp_pipeline::StepDetails* stepDetails) const
 {
-  stepDetails->setOutputNames({"Output image"});
+  stepDetails->setOutputNames({"Output data"});
 
   std::vector<tp_utils::StringID> validParams;
   const auto& parameters = stepDetails->parameters();
