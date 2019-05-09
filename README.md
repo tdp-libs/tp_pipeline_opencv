@@ -12,6 +12,7 @@ cmake .. \
       -DIOS_DEPLOYMENT_TARGET=11.0 \
       -DIOS_PLATFORM=OS \
       -DBUILD_SHARED_LIBS=OFF \
+      -DBUILD_opencv_apps=OFF \
       -DWITH_PNG=OFF \
       -DWITH_CAP_IOS=OFF \
       -DWITH_AVFOUNDATION=OFF
