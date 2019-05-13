@@ -18,14 +18,29 @@ class StepDelegateMap;
 namespace tp_pipeline_opencv
 {
 TDP_DECLARE_ID(                       opencvSID,                           "Opencv")
+TDP_DECLARE_ID(                         blurSID,                             "Blur")
 TDP_DECLARE_ID(             featureExtractorSID,                "Feature extractor")
 TDP_DECLARE_ID(                 detectorTypeSID,                    "Detector type")
 TDP_DECLARE_ID(                        cvMatSID,                           "CV mat")
 TDP_DECLARE_ID(                convertImagesSID,                   "Convert images")
+TDP_DECLARE_ID(                   borderTypeSID,                      "Border type")
+TDP_DECLARE_ID(                  kernelWidthSID,                     "Kernel width")
+TDP_DECLARE_ID(                 kernelHeightSID,                    "Kernel height")
+TDP_DECLARE_ID(                   kernelSizeSID,                      "Kernel size")
+TDP_DECLARE_ID(                       sigmaXSID,                          "Sigma x")
+TDP_DECLARE_ID(                       sigmaYSID,                          "Sigma y")
+TDP_DECLARE_ID(                   sigmaColorSID,                      "Sigma color")
+TDP_DECLARE_ID(                   sigmaSpaceSID,                      "Sigma space")
+TDP_DECLARE_ID(                     diameterSID,                         "Diameter")
+
 
 //##################################################################################################
 //! Add the step delegates that this module provides to the StepDelegateMap
 void createStepDelegates(tp_pipeline::StepDelegateMap& stepDelegates, const tp_data::CollectionFactory* collectionFactory);
+
+//##################################################################################################
+//! Static initialization of this module, see TP_STATIC_INIT in dependencies.pri
+int staticInit();
 }
 
 #endif

@@ -17,6 +17,9 @@
 namespace tp_pipeline_opencv
 {
 
+namespace
+{
+
 //##################################################################################################
 enum class Mode_lt
 {
@@ -37,6 +40,8 @@ Mode_lt modeFromString(const std::string& typeString)
     return Mode_lt::ColorMapToMat;
 
   return Mode_lt::MatToColorMap;
+}
+
 }
 
 //##################################################################################################

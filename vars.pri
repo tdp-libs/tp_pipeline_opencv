@@ -16,3 +16,6 @@ HEADERS += inc/tp_pipeline_opencv/step_delegates/FeatureExtractorStepDelegate.h
 SOURCES += src/step_delegates/FeatureMatcherStepDelegate.cpp
 HEADERS += inc/tp_pipeline_opencv/step_delegates/FeatureMatcherStepDelegate.h
 
+SOURCES += src/step_delegates/BlurStepDelegate.cpp
+HEADERS += inc/tp_pipeline_opencv/step_delegates/BlurStepDelegate.h
+
