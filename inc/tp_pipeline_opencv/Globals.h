@@ -19,6 +19,8 @@ namespace tp_pipeline_opencv
 {
 TDP_DECLARE_ID(                       opencvSID,                           "Opencv")
 TDP_DECLARE_ID(                         blurSID,                             "Blur")
+TDP_DECLARE_ID(              erosionDilationSID,                 "Erosion dilation")
+TDP_DECLARE_ID(                   morphologySID,                       "Morphology")
 TDP_DECLARE_ID(             featureExtractorSID,                "Feature extractor")
 TDP_DECLARE_ID(                 detectorTypeSID,                    "Detector type")
 TDP_DECLARE_ID(                        cvMatSID,                           "CV mat")
@@ -32,6 +34,9 @@ TDP_DECLARE_ID(                       sigmaYSID,                          "Sigma
 TDP_DECLARE_ID(                   sigmaColorSID,                      "Sigma color")
 TDP_DECLARE_ID(                   sigmaSpaceSID,                      "Sigma space")
 TDP_DECLARE_ID(                     diameterSID,                         "Diameter")
+TDP_DECLARE_ID(                 elementShapeSID,                    "Element shape")
+TDP_DECLARE_ID(                  elementSizeSID,                     "Element size")
+TDP_DECLARE_ID(                    morphTypeSID,                       "Morph type")
 
 
 //##################################################################################################

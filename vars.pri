@@ -6,6 +6,9 @@ DEFINES += TP_PIPELINE_OPENCV_LIBRARY
 SOURCES += src/Globals.cpp
 HEADERS += inc/tp_pipeline_opencv/Globals.h
 
+SOURCES += src/Enums.cpp
+HEADERS += inc/tp_pipeline_opencv/Enums.h
+
 #-- Delegates --------------------------------------------------------------------------------------
 SOURCES += src/step_delegates/ConvertImagesStepDelegate.cpp
 HEADERS += inc/tp_pipeline_opencv/step_delegates/ConvertImagesStepDelegate.h
@@ -19,3 +22,8 @@ HEADERS += inc/tp_pipeline_opencv/step_delegates/FeatureMatcherStepDelegate.h
 SOURCES += src/step_delegates/BlurStepDelegate.cpp
 HEADERS += inc/tp_pipeline_opencv/step_delegates/BlurStepDelegate.h
 
+SOURCES += src/step_delegates/ErosionDilationStepDelegate.cpp
+HEADERS += inc/tp_pipeline_opencv/step_delegates/ErosionDilationStepDelegate.h
+
+SOURCES += src/step_delegates/MorphologyStepDelegate.cpp
+HEADERS += inc/tp_pipeline_opencv/step_delegates/MorphologyStepDelegate.h
