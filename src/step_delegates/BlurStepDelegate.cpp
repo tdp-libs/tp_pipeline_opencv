@@ -247,6 +247,7 @@ void BlurStepDelegate::fixupParameters(tp_pipeline::StepDetails* stepDetails) co
     param.type = tp_pipeline::intSID();
     param.min = 1;
     param.max = 31;
+    param.step = 2;
     param.validateBounds(4);
 
     param.enabled = (mode==Mode_lt::Blur           ||
@@ -266,6 +267,7 @@ void BlurStepDelegate::fixupParameters(tp_pipeline::StepDetails* stepDetails) co
     param.type = tp_pipeline::intSID();
     param.min = 1;
     param.max = 31;
+    param.step = 2;
     param.validateBounds(4);
 
     param.enabled = (mode==Mode_lt::Blur           ||
