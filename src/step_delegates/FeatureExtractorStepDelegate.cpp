@@ -191,7 +191,7 @@ void FeatureExtractorStepDelegate::fixupParameters(tp_pipeline::StepDetails* ste
     auto param = tpGetMapValue(parameters, name);
     param.name = name;
     param.description = "The source image to detect features from.";
-    param.type = tp_pipeline::namedDataSID();
+    param.setNamedData();
 
     stepDetails->setParamerter(param);
     validParams.push_back(name);
@@ -202,7 +202,7 @@ void FeatureExtractorStepDelegate::fixupParameters(tp_pipeline::StepDetails* ste
     auto param = tpGetMapValue(parameters, name);
     param.name = name;
     param.description = "Input features for extraction.";
-    param.type = tp_pipeline::namedDataSID();
+    param.setNamedData();
 
     stepDetails->setParamerter(param);
     validParams.push_back(name);

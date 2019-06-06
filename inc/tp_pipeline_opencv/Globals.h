@@ -37,6 +37,7 @@ TDP_DECLARE_ID(                     diameterSID,                         "Diamet
 TDP_DECLARE_ID(                 elementShapeSID,                    "Element shape")
 TDP_DECLARE_ID(                  elementSizeSID,                     "Element size")
 TDP_DECLARE_ID(                    morphTypeSID,                       "Morph type")
+TDP_DECLARE_ID(               conversionTypeSID,                  "Conversion type")
 
 
 //##################################################################################################

@@ -384,7 +384,7 @@ void BlurStepDelegate::fixupParameters(tp_pipeline::StepDetails* stepDetails) co
     auto param = tpGetMapValue(parameters, name);
     param.name = name;
     param.description = "The input image.";
-    param.type = tp_pipeline::namedDataSID();
+    param.setNamedData();
 
     stepDetails->setParamerter(param);
     validParams.push_back(name);

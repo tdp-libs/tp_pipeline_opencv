@@ -20,6 +20,11 @@ const std::vector<std::string>& morphTypes();
 //##################################################################################################
 cv::MorphTypes morphTypeFromString(const std::string& morphTypeString);
 
+//##################################################################################################
+const std::vector<std::string>& colorConversionCodes();
+
+//##################################################################################################
+cv::ColorConversionCodes colorConversionCodeFromString(const std::string& colorConversionCodeString);
 }
 
 #endif

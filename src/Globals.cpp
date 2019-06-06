@@ -31,6 +31,7 @@ TDP_DEFINE_ID(                     diameterSID,                         "Diamete
 TDP_DEFINE_ID(                 elementShapeSID,                    "Element shape")
 TDP_DEFINE_ID(                  elementSizeSID,                     "Element size")
 TDP_DEFINE_ID(                    morphTypeSID,                       "Morph type")
+TDP_DEFINE_ID(               conversionTypeSID,                  "Conversion type")
 
 //##################################################################################################
 void createStepDelegates(tp_pipeline::StepDelegateMap& stepDelegates, const tp_data::CollectionFactory* collectionFactory)
