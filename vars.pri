@@ -27,3 +27,7 @@ HEADERS += inc/tp_pipeline_opencv/step_delegates/ErosionDilationStepDelegate.h
 
 SOURCES += src/step_delegates/MorphologyStepDelegate.cpp
 HEADERS += inc/tp_pipeline_opencv/step_delegates/MorphologyStepDelegate.h
+
+SOURCES += src/step_delegates/ThresholdingStepDelegate.cpp
+HEADERS += inc/tp_pipeline_opencv/step_delegates/ThresholdingStepDelegate.h
+S

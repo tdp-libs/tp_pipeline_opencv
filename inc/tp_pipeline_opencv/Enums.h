@@ -25,6 +25,12 @@ const std::vector<std::string>& colorConversionCodes();
 
 //##################################################################################################
 cv::ColorConversionCodes colorConversionCodeFromString(const std::string& colorConversionCodeString);
+
+//##################################################################################################
+const std::vector<std::string>& thresholdTypes();
+
+//##################################################################################################
+cv::ThresholdTypes thresholdTypeFromString(const std::string& thresholdTypeString);
 }
 
 #endif

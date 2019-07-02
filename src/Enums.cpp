@@ -490,4 +490,37 @@ cv::ColorConversionCodes colorConversionCodeFromString(const std::string& colorC
 }
 
 
+
+//##################################################################################################
+const std::vector<std::string>& thresholdTypes()
+{
+  static const std::vector<std::string> thresholdTypes
+  {
+    "THRESH_BINARY",
+    "THRESH_BINARY_INV",
+    "THRESH_TRUNC",
+    "THRESH_TOZERO",
+    "THRESH_TOZERO_INV",
+    "THRESH_MASK",
+    "THRESH_OTSU",
+    "THRESH_TRIANGLE"
+  };
+
+  return thresholdTypes;
+}
+
+//##################################################################################################
+cv::ThresholdTypes thresholdTypeFromString(const std::string& thresholdTypeString)
+{
+  if(thresholdTypeString == "THRESH_BINARY")     return cv::THRESH_BINARY;
+  if(thresholdTypeString == "THRESH_BINARY_INV") return cv::THRESH_BINARY_INV;
+  if(thresholdTypeString == "THRESH_TRUNC")      return cv::THRESH_TRUNC;
+  if(thresholdTypeString == "THRESH_TOZERO")     return cv::THRESH_TOZERO;
+  if(thresholdTypeString == "THRESH_TOZERO_INV") return cv::THRESH_TOZERO_INV;
+  if(thresholdTypeString == "THRESH_MASK")       return cv::THRESH_MASK;
+  if(thresholdTypeString == "THRESH_OTSU")       return cv::THRESH_OTSU;
+  if(thresholdTypeString == "THRESH_TRIANGLE")   return cv::THRESH_TRIANGLE;
+  return cv::THRESH_BINARY;
+}
+
 }

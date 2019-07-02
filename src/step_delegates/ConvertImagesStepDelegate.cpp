@@ -5,6 +5,7 @@
 #include "tp_data_opencv/ImageConversion.h"
 
 #include "tp_data_image_utils/members/ColorMapMember.h"
+#include "tp_data_image_utils/members/ByteMapMember.h"
 
 #include "tp_pipeline_image_utils/Globals.h"
 
@@ -25,6 +26,7 @@ namespace
 enum class Mode_lt
 {
   ColorMapToMat,
+  ByteMapToMat,
   MatToColorMap,
   MatToMat
 };
@@ -32,7 +34,7 @@ enum class Mode_lt
 //##################################################################################################
 std::vector<std::string> modes()
 {
-  return {"ColorMap to Mat", "Mat to ColorMap", "Mat to Mat"};
+  return {"ColorMap to Mat", "ByteMap to Mat", "Mat to ColorMap", "Mat to Mat"};
 }
 
 //##################################################################################################
@@ -40,6 +42,9 @@ Mode_lt modeFromString(const std::string& typeString)
 {
   if(typeString == "ColorMap to Mat")
     return Mode_lt::ColorMapToMat;
+
+  if(typeString == "ByteMap to Mat")
+    return Mode_lt::ByteMapToMat;
 
   if(typeString == "Mat to ColorMap")
     return Mode_lt::MatToColorMap;
@@ -76,6 +81,24 @@ void ConvertImagesStepDelegate::executeStep(tp_pipeline::StepDetails* stepDetail
     if(!in)
     {
       output.addError("Failed to find input ColorMap data.");
+      return;
+    }
+
+    auto out = new tp_data_opencv::CVMatMember(stepDetails->lookupOutputName("Output data"));
+    output.addMember(out);
+
+    tp_data_opencv::convertImage(in->data, out->data);
+
+    break;
+  }
+
+  case Mode_lt::ByteMapToMat: //-------------------------------------------------------------------
+  {
+    tp_data_image_utils::ByteMapMember* in{nullptr};
+    input.memberCast(stepDetails->parameterValue<std::string>(tp_pipeline_image_utils::grayImageSID()), in);
+    if(!in)
+    {
+      output.addError("Failed to find input ByteMap data.");
       return;
     }
 
@@ -172,6 +195,21 @@ void ConvertImagesStepDelegate::fixupParameters(tp_pipeline::StepDetails* stepDe
     param.name = name;
     param.description = "The input image.";
     param.setNamedData();
+
+    param.enabled = (mode != Mode_lt::ByteMapToMat);
+
+    stepDetails->setParamerter(param);
+    validParams.push_back(name);
+  }
+
+  {
+    const auto& name = tp_pipeline_image_utils::grayImageSID();
+    auto param = tpGetMapValue(parameters, name);
+    param.name = name;
+    param.description = "The input image.";
+    param.setNamedData();
+
+    param.enabled = (mode == Mode_lt::ByteMapToMat);
 
     stepDetails->setParamerter(param);
     validParams.push_back(name);

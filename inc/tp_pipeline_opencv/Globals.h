@@ -21,6 +21,7 @@ TDP_DECLARE_ID(                       opencvSID,                           "Open
 TDP_DECLARE_ID(                         blurSID,                             "Blur")
 TDP_DECLARE_ID(              erosionDilationSID,                 "Erosion dilation")
 TDP_DECLARE_ID(                   morphologySID,                       "Morphology")
+TDP_DECLARE_ID(                 thresholdingSID,                     "Thresholding")
 TDP_DECLARE_ID(             featureExtractorSID,                "Feature extractor")
 TDP_DECLARE_ID(                 detectorTypeSID,                    "Detector type")
 TDP_DECLARE_ID(                        cvMatSID,                           "CV mat")
@@ -38,6 +39,9 @@ TDP_DECLARE_ID(                 elementShapeSID,                    "Element sha
 TDP_DECLARE_ID(                  elementSizeSID,                     "Element size")
 TDP_DECLARE_ID(                    morphTypeSID,                       "Morph type")
 TDP_DECLARE_ID(               conversionTypeSID,                  "Conversion type")
+TDP_DECLARE_ID(                thresholdTypeSID,                   "Threshold type")
+TDP_DECLARE_ID(                       threshSID,                           "Thresh")
+TDP_DECLARE_ID(                       maxvalSID,                           "Maxval")
 
 
 //##################################################################################################

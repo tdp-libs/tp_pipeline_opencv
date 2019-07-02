@@ -4,6 +4,7 @@
 #include "tp_pipeline_opencv/step_delegates/BlurStepDelegate.h"
 #include "tp_pipeline_opencv/step_delegates/ErosionDilationStepDelegate.h"
 #include "tp_pipeline_opencv/step_delegates/MorphologyStepDelegate.h"
+#include "tp_pipeline_opencv/step_delegates/ThresholdingStepDelegate.h"
 
 #include "tp_pipeline/StepDelegateMap.h"
 
@@ -14,6 +15,7 @@ TDP_DEFINE_ID(                       opencvSID,                           "Openc
 TDP_DEFINE_ID(                         blurSID,                             "Blur")
 TDP_DEFINE_ID(              erosionDilationSID,                 "Erosion dilation")
 TDP_DEFINE_ID(                   morphologySID,                       "Morphology")
+TDP_DEFINE_ID(                 thresholdingSID,                     "Thresholding")
 TDP_DEFINE_ID(             featureExtractorSID,                "Feature extractor")
 TDP_DEFINE_ID(                 detectorTypeSID,                    "Detector type")
 TDP_DEFINE_ID(                         modeSID,                             "Mode")
@@ -32,6 +34,9 @@ TDP_DEFINE_ID(                 elementShapeSID,                    "Element shap
 TDP_DEFINE_ID(                  elementSizeSID,                     "Element size")
 TDP_DEFINE_ID(                    morphTypeSID,                       "Morph type")
 TDP_DEFINE_ID(               conversionTypeSID,                  "Conversion type")
+TDP_DEFINE_ID(                thresholdTypeSID,                   "Threshold type")
+TDP_DEFINE_ID(                       threshSID,                           "Thresh")
+TDP_DEFINE_ID(                       maxvalSID,                           "Maxval")
 
 //##################################################################################################
 void createStepDelegates(tp_pipeline::StepDelegateMap& stepDelegates, const tp_data::CollectionFactory* collectionFactory)
@@ -42,6 +47,7 @@ void createStepDelegates(tp_pipeline::StepDelegateMap& stepDelegates, const tp_d
   stepDelegates.addStepDelegate(new BlurStepDelegate);
   stepDelegates.addStepDelegate(new ErosionDilationStepDelegate);
   stepDelegates.addStepDelegate(new MorphologyStepDelegate);
+  stepDelegates.addStepDelegate(new ThresholdingStepDelegate);
 }
 
 REGISTER_CREATE_STEP_DELEGATES;
