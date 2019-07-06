@@ -86,7 +86,16 @@ void ThresholdingStepDelegate::executeStep(tp_pipeline::StepDetails* stepDetails
     }
     else
     {
-
+      int ch1Low  = stepDetails->parameterValue<int>(channel1LowSID());
+      int ch2Low  = stepDetails->parameterValue<int>(channel2LowSID());
+      int ch3Low  = stepDetails->parameterValue<int>(channel3LowSID());
+      int ch1High = stepDetails->parameterValue<int>(channel1HighSID());
+      int ch2High = stepDetails->parameterValue<int>(channel2HighSID());
+      int ch3High = stepDetails->parameterValue<int>(channel3HighSID());
+      cv::inRange(src,
+                  cv::Scalar(ch1Low, ch2Low, ch3Low, 0),
+                  cv::Scalar(ch1High, ch2High, ch3High, 255),
+                  dst);
     }
   }
   catch( cv::Exception& e )
@@ -165,6 +174,29 @@ void ThresholdingStepDelegate::fixupParameters(tp_pipeline::StepDetails* stepDet
     stepDetails->setParamerter(param);
     validParams.push_back(name);
   }
+
+  auto addChannel = [&](const auto& name, const auto& description)
+  {
+    auto param = tpGetMapValue(parameters, name);
+    param.name = name;
+    param.description = description;
+    param.type = tp_pipeline::intSID();
+    param.min = 0;
+    param.max = 255;
+    param.validateBounds(128);
+
+    param.enabled = (mode == Mode_lt::InRange);
+
+    stepDetails->setParamerter(param);
+    validParams.push_back(name);
+  };
+
+  addChannel(channel1LowSID() , "Channel 1 low threshold.");
+  addChannel(channel2LowSID() , "Channel 2 low threshold.");
+  addChannel(channel3LowSID() , "Channel 3 low threshold.");
+  addChannel(channel1HighSID(), "Channel 1 high threshold.");
+  addChannel(channel2HighSID(), "Channel 2 high threshold.");
+  addChannel(channel3HighSID(), "Channel 3 high threshold.");
 
   {
     const auto& name = tp_pipeline_image_utils::colorImageSID();

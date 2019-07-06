@@ -1,4 +1,5 @@
 #include "tp_pipeline_opencv/step_delegates/BlurStepDelegate.h"
+#include "tp_pipeline_opencv/Enums.h"
 
 #include "tp_data_opencv/members/CVMatMember.h"
 
@@ -66,58 +67,6 @@ Mode_lt modeFromString(const std::string& modeString)
     return Mode_lt::SqrBoxFilter;
 
   return Mode_lt::Blur;
-}
-
-//##################################################################################################
-const std::vector<std::string>& borderTypes()
-{
-  static const std::vector<std::string> borderTypes
-  {
-    "BORDER_CONSTANT",
-    "BORDER_REPLICATE",
-    "BORDER_REFLECT",
-    "BORDER_WRAP",
-    "BORDER_REFLECT_101",
-    "BORDER_TRANSPARENT",
-    "BORDER_REFLECT101",
-    "BORDER_DEFAULT",
-    "BORDER_ISOLATED"
-  };
-
-  return borderTypes;
-}
-
-//##################################################################################################
-cv::BorderTypes borderTypeFromString(const std::string& borderTypeString)
-{
-  if(borderTypeString == "BORDER_CONSTANT")
-    return cv::BorderTypes::BORDER_CONSTANT;
-
-  if(borderTypeString == "BORDER_REPLICATE")
-    return cv::BorderTypes::BORDER_REPLICATE;
-
-  if(borderTypeString == "BORDER_REFLECT")
-    return cv::BorderTypes::BORDER_REFLECT;
-
-  if(borderTypeString == "BORDER_WRAP")
-    return cv::BorderTypes::BORDER_WRAP;
-
-  if(borderTypeString == "BORDER_REFLECT_101")
-    return cv::BorderTypes::BORDER_REFLECT_101;
-
-  if(borderTypeString == "BORDER_TRANSPARENT")
-    return cv::BorderTypes::BORDER_TRANSPARENT;
-
-  if(borderTypeString == "BORDER_REFLECT101")
-    return cv::BorderTypes::BORDER_REFLECT101;
-
-  if(borderTypeString == "BORDER_DEFAULT")
-    return cv::BorderTypes::BORDER_DEFAULT;
-
-  if(borderTypeString == "BORDER_ISOLATED")
-    return cv::BorderTypes::BORDER_ISOLATED;
-
-  return cv::BorderTypes::BORDER_DEFAULT;
 }
 
 }
@@ -310,10 +259,6 @@ void BlurStepDelegate::fixupParameters(tp_pipeline::StepDetails* stepDetails) co
     stepDetails->setParamerter(param);
     validParams.push_back(name);
   }
-
-  //  int ddepth = -1;
-
-  //  bool normalize = true;
 
   {
     tp_utils::StringID name = sigmaXSID();

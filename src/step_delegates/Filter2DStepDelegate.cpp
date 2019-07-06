@@ -1,4 +1,4 @@
-#include "tp_pipeline_opencv/step_delegates/MorphologyStepDelegate.h"
+#include "tp_pipeline_opencv/step_delegates/Filter2DStepDelegate.h"
 #include "tp_pipeline_opencv/Enums.h"
 
 #include "tp_data_opencv/ImageConversion.h"
@@ -13,25 +13,32 @@
 
 #include "tp_data/Collection.h"
 
+#include "tp_utils/DebugUtils.h"
+
 #include <opencv2/imgproc.hpp>
 
 namespace tp_pipeline_opencv
 {
 
 //##################################################################################################
-MorphologyStepDelegate::MorphologyStepDelegate():
-  tp_pipeline::AbstractStepDelegate(morphologySID(), {opencvSID()})
+Filter2DStepDelegate::Filter2DStepDelegate():
+  tp_pipeline::AbstractStepDelegate(filter2dSID(), {opencvSID()})
 {
 
 }
 
 //##################################################################################################
-void MorphologyStepDelegate::executeStep(tp_pipeline::StepDetails* stepDetails,
-                                         const tp_pipeline::StepInput& input,
-                                         tp_data::Collection& output) const
+void Filter2DStepDelegate::executeStep(tp_pipeline::StepDetails* stepDetails,
+                                       const tp_pipeline::StepInput& input,
+                                       tp_data::Collection& output) const
 {
-  auto morphType = morphTypeFromString(stepDetails->parameterValue<std::string>(morphTypeSID()));
-  auto morphShape = morphShapeFromString(stepDetails->parameterValue<std::string>(elementShapeSID()));
+  auto borderType  = borderTypeFromString(stepDetails->parameterValue<std::string>(borderTypeSID()));
+  auto outputDepth = depthFromString(stepDetails->parameterValue<std::string>(outputDepthSID()));
+  double delta = stepDetails->parameterValue<double>(deltaSID());
+
+  cv::Mat kernel;
+  tp_image_utils_functions::ConvolutionMatrix matrix(stepDetails->parameterValue<std::string>(tp_pipeline_image_utils::kernelSID()));
+  tp_data_opencv::convertConvolutionMatrix(matrix, kernel);
 
   tp_data_opencv::CVMatMember* in{nullptr};
   input.memberCast(stepDetails->parameterValue<std::string>(tp_pipeline_image_utils::colorImageSID()), in);
@@ -41,30 +48,13 @@ void MorphologyStepDelegate::executeStep(tp_pipeline::StepDetails* stepDetails,
     return;
   }
 
-  cv::Mat element;
-
-  if(morphType == cv::MORPH_HITMISS)
-  {
-    tp_image_utils_functions::ConvolutionMatrix matrix(stepDetails->parameterValue<std::string>(tp_pipeline_image_utils::kernelSID()));
-    tp_data_opencv::convertConvolutionMatrix(matrix, element);
-  }
-  else
-  {
-    int elementSize = stepDetails->parameterValue<int>(elementSizeSID());
-    element = cv::getStructuringElement(morphShape,
-                                        cv::Size(2*elementSize + 1, 2*elementSize+1),
-                                        cv::Point(-1,-1));
-  }
-
-
-
-
-
   const cv::Mat& src = in->data;
   cv::Mat dst;
+
   try
   {
-    morphologyEx(src, dst, morphType, element);
+    cv::Point anchor = cv::Point( -1, -1 );
+    cv::filter2D(src, dst, outputDepth, kernel, anchor, delta, borderType);
   }
   catch( cv::Exception& e )
   {
@@ -78,7 +68,7 @@ void MorphologyStepDelegate::executeStep(tp_pipeline::StepDetails* stepDetails,
 }
 
 //##################################################################################################
-void MorphologyStepDelegate::fixupParameters(tp_pipeline::StepDetails* stepDetails) const
+void Filter2DStepDelegate::fixupParameters(tp_pipeline::StepDetails* stepDetails) const
 {
   stepDetails->setOutputNames({"Output data"});
 
@@ -86,55 +76,49 @@ void MorphologyStepDelegate::fixupParameters(tp_pipeline::StepDetails* stepDetai
   const auto& parameters = stepDetails->parameters();
 
   {
-    const tp_utils::StringID& name = morphTypeSID();
-    auto param = tpGetMapValue(parameters, name);
-    param.name = name;
-    param.description = "Morph type.";
-    param.setEnum(morphTypes());
-
-    stepDetails->setParamerter(param);
-    validParams.push_back(name);
-  }
-
-  auto morphType = morphTypeFromString(stepDetails->parameterValue<std::string>(morphTypeSID()));
-
-  {
-    const tp_utils::StringID& name = elementShapeSID();
-    auto param = tpGetMapValue(parameters, name);
-    param.name = name;
-    param.description = "Element shape.";
-    param.setEnum(morphShapes());
-
-    param.enabled = (morphType == cv::MORPH_HITMISS);
-
-    stepDetails->setParamerter(param);
-    validParams.push_back(name);
-  }
-
-  {
-    tp_utils::StringID name = elementSizeSID();
-    auto param = tpGetMapValue(parameters, name);
-    param.name = name;
-    param.description = "The element size.";
-    param.type = tp_pipeline::intSID();
-    param.min = 1;
-    param.max = 31;
-    param.validateBounds(4);
-
-    param.enabled = (morphType != cv::MORPH_HITMISS);
-
-    stepDetails->setParamerter(param);
-    validParams.push_back(name);
-  }
-
-  {
     const auto& name = tp_pipeline_image_utils::kernelSID();
     auto param = tpGetMapValue(parameters, name);
     param.name = name;
-    param.description = "The hit and miss kernel.";
+    param.description = "The filter kernel.";
     param.type = tp_pipeline::convolutionMatrixSID();
 
     param.value = tp_image_utils_functions::ConvolutionMatrix(tpGetVariantValue<std::string>(param.value)).toString();
+
+    stepDetails->setParamerter(param);
+    validParams.push_back(name);
+  }
+
+  {
+    const tp_utils::StringID& name = borderTypeSID();
+    auto param = tpGetMapValue(parameters, name);
+    param.name = name;
+    param.description = "The border type to use.";
+    param.setEnum(borderTypes());
+
+    stepDetails->setParamerter(param);
+    validParams.push_back(name);
+  }
+
+  {
+    const tp_utils::StringID& name = outputDepthSID();
+    auto param = tpGetMapValue(parameters, name);
+    param.name = name;
+    param.description = "The depth of the output image.";
+    param.setEnum(depths());
+
+    stepDetails->setParamerter(param);
+    validParams.push_back(name);
+  }
+
+  {
+    tp_utils::StringID name = deltaSID();
+    auto param = tpGetMapValue(parameters, name);
+    param.name = name;
+    param.description = "Delta.";
+    param.type = tp_pipeline::doubleSID();
+    param.min = -DBL_MAX;
+    param.max =  DBL_MAX;
+    param.validateBounds<double>(0.0);
 
     stepDetails->setParamerter(param);
     validParams.push_back(name);

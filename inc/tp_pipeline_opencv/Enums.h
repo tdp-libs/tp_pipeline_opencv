@@ -31,6 +31,19 @@ const std::vector<std::string>& thresholdTypes();
 
 //##################################################################################################
 cv::ThresholdTypes thresholdTypeFromString(const std::string& thresholdTypeString);
+
+//##################################################################################################
+const std::vector<std::string>& depths();
+
+//##################################################################################################
+int depthFromString(const std::string& depthString);
+
+//##################################################################################################
+const std::vector<std::string>& borderTypes();
+
+//##################################################################################################
+cv::BorderTypes borderTypeFromString(const std::string& borderTypeString);
+
 }
 
 #endif

@@ -523,4 +523,102 @@ cv::ThresholdTypes thresholdTypeFromString(const std::string& thresholdTypeStrin
   return cv::THRESH_BINARY;
 }
 
+//##################################################################################################
+const std::vector<std::string>& depths()
+{
+  static const std::vector<std::string> depths
+  {
+    "CV_8U",
+    "CV_8S",
+    "CV_16U",
+    "CV_16S",
+    "CV_32S",
+    "CV_32F",
+    "CV_64F"
+  };
+
+  return depths;
+}
+
+//##################################################################################################
+int depthFromString(const std::string& depthString)
+{
+  if(depthString == "CV_8U")
+    return CV_8U;
+
+  if(depthString == "CV_8S")
+    return CV_8S;
+
+  if(depthString == "CV_16U")
+    return CV_16U;
+
+  if(depthString == "CV_16S")
+    return CV_16S;
+
+  if(depthString == "CV_32S")
+    return CV_32S;
+
+  if(depthString == "CV_32F")
+    return CV_32F;
+
+  if(depthString == "CV_64F")
+    return CV_64F;
+
+  return CV_8U;
+}
+
+
+
+//##################################################################################################
+const std::vector<std::string>& borderTypes()
+{
+  static const std::vector<std::string> borderTypes
+  {
+    "BORDER_CONSTANT",
+    "BORDER_REPLICATE",
+    "BORDER_REFLECT",
+    "BORDER_WRAP",
+    "BORDER_REFLECT_101",
+    "BORDER_TRANSPARENT",
+    "BORDER_REFLECT101",
+    "BORDER_DEFAULT",
+    "BORDER_ISOLATED"
+  };
+
+  return borderTypes;
+}
+
+//##################################################################################################
+cv::BorderTypes borderTypeFromString(const std::string& borderTypeString)
+{
+  if(borderTypeString == "BORDER_CONSTANT")
+    return cv::BorderTypes::BORDER_CONSTANT;
+
+  if(borderTypeString == "BORDER_REPLICATE")
+    return cv::BorderTypes::BORDER_REPLICATE;
+
+  if(borderTypeString == "BORDER_REFLECT")
+    return cv::BorderTypes::BORDER_REFLECT;
+
+  if(borderTypeString == "BORDER_WRAP")
+    return cv::BorderTypes::BORDER_WRAP;
+
+  if(borderTypeString == "BORDER_REFLECT_101")
+    return cv::BorderTypes::BORDER_REFLECT_101;
+
+  if(borderTypeString == "BORDER_TRANSPARENT")
+    return cv::BorderTypes::BORDER_TRANSPARENT;
+
+  if(borderTypeString == "BORDER_REFLECT101")
+    return cv::BorderTypes::BORDER_REFLECT101;
+
+  if(borderTypeString == "BORDER_DEFAULT")
+    return cv::BorderTypes::BORDER_DEFAULT;
+
+  if(borderTypeString == "BORDER_ISOLATED")
+    return cv::BorderTypes::BORDER_ISOLATED;
+
+  return cv::BorderTypes::BORDER_DEFAULT;
+}
+
 }

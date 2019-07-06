@@ -30,4 +30,12 @@ HEADERS += inc/tp_pipeline_opencv/step_delegates/MorphologyStepDelegate.h
 
 SOURCES += src/step_delegates/ThresholdingStepDelegate.cpp
 HEADERS += inc/tp_pipeline_opencv/step_delegates/ThresholdingStepDelegate.h
-S
+
+SOURCES += src/step_delegates/Filter2DStepDelegate.cpp
+HEADERS += inc/tp_pipeline_opencv/step_delegates/Filter2DStepDelegate.h
+
+SOURCES += src/step_delegates/AddBorderStepDelegate.cpp
+HEADERS += inc/tp_pipeline_opencv/step_delegates/AddBorderStepDelegate.h
+
+SOURCES += src/step_delegates/SobelStepDelegate.cpp
+HEADERS += inc/tp_pipeline_opencv/step_delegates/SobelStepDelegate.h
