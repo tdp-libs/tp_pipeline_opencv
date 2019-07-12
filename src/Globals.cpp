@@ -7,7 +7,7 @@
 #include "tp_pipeline_opencv/step_delegates/ThresholdingStepDelegate.h"
 #include "tp_pipeline_opencv/step_delegates/Filter2DStepDelegate.h"
 #include "tp_pipeline_opencv/step_delegates/AddBorderStepDelegate.h"
-#include "tp_pipeline_opencv/step_delegates/SobelStepDelegate.h"
+#include "tp_pipeline_opencv/step_delegates/HistogramEqualizationStepDelegate.h"
 
 #include "tp_pipeline/StepDelegateMap.h"
 
@@ -21,6 +21,7 @@ TDP_DEFINE_ID(                   morphologySID,                       "Morpholog
 TDP_DEFINE_ID(                 thresholdingSID,                     "Thresholding")
 TDP_DEFINE_ID(                     filter2dSID,                        "Filter 2d")
 TDP_DEFINE_ID(                    addBorderSID,                       "Add border")
+TDP_DEFINE_ID(        histogramEqualizationSID,           "Histogram equalization")
 TDP_DEFINE_ID(                        sobelSID,                            "Sobel")
 TDP_DEFINE_ID(             featureExtractorSID,                "Feature extractor")
 TDP_DEFINE_ID(                 detectorTypeSID,                    "Detector type")
@@ -57,6 +58,8 @@ TDP_DEFINE_ID(                          topSID,                              "To
 TDP_DEFINE_ID(                        rightSID,                            "Right")
 TDP_DEFINE_ID(                       bottomSID,                           "Bottom")
 TDP_DEFINE_ID(                         leftSID,                             "Left")
+TDP_DEFINE_ID(                 lowThresholdSID,                    "Low threshold")
+TDP_DEFINE_ID(                highThresholdSID,                   "High threshold")
 
 //##################################################################################################
 void createStepDelegates(tp_pipeline::StepDelegateMap& stepDelegates, const tp_data::CollectionFactory* collectionFactory)
@@ -70,7 +73,7 @@ void createStepDelegates(tp_pipeline::StepDelegateMap& stepDelegates, const tp_d
   stepDelegates.addStepDelegate(new ThresholdingStepDelegate);
   stepDelegates.addStepDelegate(new Filter2DStepDelegate);
   stepDelegates.addStepDelegate(new AddBorderStepDelegate);
-  stepDelegates.addStepDelegate(new SobelStepDelegate);
+  stepDelegates.addStepDelegate(new HistogramEqualizationStepDelegate);
 }
 
 REGISTER_CREATE_STEP_DELEGATES;

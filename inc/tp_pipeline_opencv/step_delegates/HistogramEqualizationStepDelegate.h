@@ -1,5 +1,5 @@
-#ifndef tp_pipeline_opencv_SobelStepDelegate_h
-#define tp_pipeline_opencv_SobelStepDelegate_h
+#ifndef tp_pipeline_opencv_HistogramEqualizationStepDelegate_h
+#define tp_pipeline_opencv_HistogramEqualizationStepDelegate_h
 
 #include "tp_pipeline_opencv/Globals.h"
 
@@ -9,11 +9,11 @@ namespace tp_pipeline_opencv
 {
 
 //##################################################################################################
-class SobelStepDelegate: public tp_pipeline::AbstractStepDelegate
+class HistogramEqualizationStepDelegate: public tp_pipeline::AbstractStepDelegate
 {
 public:
   //################################################################################################
-  SobelStepDelegate();
+  HistogramEqualizationStepDelegate();
 
   //################################################################################################
   void executeStep(tp_pipeline::StepDetails* stepDetails,

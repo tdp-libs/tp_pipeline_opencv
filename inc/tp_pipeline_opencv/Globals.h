@@ -24,6 +24,7 @@ TDP_DECLARE_ID(                   morphologySID,                       "Morpholo
 TDP_DECLARE_ID(                 thresholdingSID,                     "Thresholding")
 TDP_DECLARE_ID(                     filter2dSID,                        "Filter 2d")
 TDP_DECLARE_ID(                    addBorderSID,                       "Add border")
+TDP_DECLARE_ID(        histogramEqualizationSID,           "Histogram equalization")
 TDP_DECLARE_ID(                        sobelSID,                            "Sobel")
 TDP_DECLARE_ID(             featureExtractorSID,                "Feature extractor")
 TDP_DECLARE_ID(                 detectorTypeSID,                    "Detector type")
@@ -59,6 +60,8 @@ TDP_DECLARE_ID(                          topSID,                              "T
 TDP_DECLARE_ID(                        rightSID,                            "Right")
 TDP_DECLARE_ID(                       bottomSID,                           "Bottom")
 TDP_DECLARE_ID(                         leftSID,                             "Left")
+TDP_DECLARE_ID(                 lowThresholdSID,                    "Low threshold")
+TDP_DECLARE_ID(                highThresholdSID,                   "High threshold")
 
 
 //##################################################################################################
